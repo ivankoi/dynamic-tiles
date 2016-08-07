@@ -1,4 +1,4 @@
-package com.ivankoi.home;
+package com.ivankoi.web.home;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -41,13 +41,13 @@ public class HomeControllerIT {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("home"))
-                .andExpect(forwardedUrl("/WEB-INF/view/jsp/home.jsp"));
+                .andExpect(forwardedUrl("/WEB-INF/tiles/templates/base.jsp"));
 
 
         mockMvc.perform(get("/home"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("home"))
-                .andExpect(forwardedUrl("/WEB-INF/view/jsp/home.jsp"));
+                .andExpect(forwardedUrl("/WEB-INF/tiles/templates/base.jsp"));
     }
 
 }

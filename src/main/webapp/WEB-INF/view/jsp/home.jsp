@@ -1,8 +1,1 @@
-<html>
-<head>
-    <title>Hoem Page</title>
-</head>
-<body>
-    Hello World
-</body>
-</html>
+<p>Home Page Body</p>
