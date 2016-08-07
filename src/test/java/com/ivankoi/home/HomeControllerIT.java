@@ -13,6 +13,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.inject.Inject;
 
+import static org.junit.Assert.fail;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -48,6 +49,5 @@ public class HomeControllerIT {
                 .andExpect(view().name("home"))
                 .andExpect(forwardedUrl("/WEB-INF/view/jsp/home.jsp"));
     }
-
 
 }
