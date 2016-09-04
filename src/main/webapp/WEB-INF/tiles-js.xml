@@ -8,7 +8,9 @@
         <put-attribute name="footer" value="/WEB-INF/tiles/common/footer.jsp" />
     </definition>
     
+<!--
     <definition name="js.home.definition" extends="base.definition">
         <put-attribute name="body" value="/WEB-INF/view/jsp/js.home.jsp"/>
     </definition>
+-->
 </tiles-definitions>

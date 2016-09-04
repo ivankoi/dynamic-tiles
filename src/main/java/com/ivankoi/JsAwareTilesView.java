@@ -15,20 +15,20 @@ import javax.servlet.http.HttpSession;
  */
 public class JsAwareTilesView extends TilesView {
 
-    @Override
-    public String getUrl() {
-        Boolean jsEnabled = (Boolean) ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest().getSession().getAttribute("jsEnabled");
-
-        String viewName = super.getUrl();
-
-        if (jsEnabled == null || !jsEnabled) {
-            logger.info("resolving to: " + viewName);
-            return viewName;
-        } else {
-            logger.info("resolving to: " + "js." + viewName);
-            return "js." + viewName;
-        }
-
-    }
+//    @Override
+//    public String getUrl() {
+//        Boolean jsEnabled = (Boolean) ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest().getSession().getAttribute("jsEnabled");
+//
+//        String viewName = super.getUrl();
+//
+//        if (jsEnabled == null || !jsEnabled) {
+//            logger.info("resolving to: " + viewName);
+//            return viewName;
+//        } else {
+//            logger.info("resolving to: " + "js." + viewName);
+//            return "js." + viewName;
+//        }
+//
+//    }
 
 }

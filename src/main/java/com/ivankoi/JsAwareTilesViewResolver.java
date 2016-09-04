@@ -4,6 +4,7 @@ package com.ivankoi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
@@ -17,21 +18,43 @@ public class JsAwareTilesViewResolver extends UrlBasedViewResolver implements Vi
     @Autowired
     private HttpSession httpSession;
 
+    private boolean jsEnabled() {
+        Boolean jsEnabled = (Boolean) httpSession.getAttribute("jsEnabled");
+        logger.info("JsEnabled while resolving view [" + jsEnabled  + "]");
+        if (jsEnabled == null || !jsEnabled) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     @Override
     protected Object getCacheKey(String viewName, Locale locale) {
 
-        Boolean jsEnabled = (Boolean) httpSession.getAttribute("jsEnabled");
-
-        logger.info("JsEnabled while resolving view [" + jsEnabled  + "]");
-
-        if (jsEnabled == null || !jsEnabled) {
-            logger.info("resolving to: " + viewName);
+        if (!jsEnabled()) {
             return viewName;
         } else {
-            logger.info("resolving to: " + "js." + viewName);
             return "js." + viewName;
         }
 
     }
 
+    @Override
+    protected View loadView(String viewName, Locale locale) throws Exception {
+        if (!jsEnabled()) {
+            return super.loadView(viewName, locale);
+        } else {
+
+            viewName = "js." + viewName;
+            View view = super.loadView(viewName, locale);
+
+            if (view == null) {
+                viewName = viewName.replaceFirst("js.", "");
+                view = super.loadView(viewName, locale);
+            }
+
+            return view;
+        }
+
+    }
 }
